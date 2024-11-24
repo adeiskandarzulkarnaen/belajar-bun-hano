@@ -1,0 +1,8 @@
+
+
+## setup prisma
+bun add -d prisma
+bun add @prisma/client
+bunx prisma init --datasource-provider mysql
+
+

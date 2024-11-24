@@ -1,0 +1,10 @@
+###
+// Hello World
+GET http://localhost:3000/hello/adeandasri
+
+
+###
+//
+GET http://localhost:3000/ini
+Content-Type: application/json
+Authorization: Bearer xxx

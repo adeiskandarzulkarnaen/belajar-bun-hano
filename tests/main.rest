@@ -4,7 +4,19 @@ GET http://localhost:3000/hello/adeandasri
 
 
 ###
-//
+// get data
 GET http://localhost:3000/ini
 Content-Type: application/json
 Authorization: Bearer xxx
+
+
+
+###
+// POst User
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "username": "adeiskandarzulkarnaen",
+  "password": "xx"
+}

@@ -8,7 +8,8 @@
   "dependencies": {
     "@hono/zod-validator": "^0.4.1",
     "@prisma/client": "^5.22.0",
-    "hono": "^4.6.11"
+    "hono": "^4.6.11",
+    "instances-container": "^2.0.6"
   },
   "devDependencies": {
     "@types/bun": "latest",

@@ -5,7 +5,7 @@ import errorHandler from './middlewares/errorHandler';
 import bearerMiddleware from './middlewares/bearerMiddleware';
 import InvariantError from './exceptions/InvariantError';
 
-
+import userApp from './api/users/index';
 
 const app = new Hono();
 
@@ -22,6 +22,7 @@ app.get('/error', async (c: Context) => {
 })
 
 
+app.route('/users', userApp);
 
 app.notFound(notFoundHandler);
 app.onError(errorHandler);

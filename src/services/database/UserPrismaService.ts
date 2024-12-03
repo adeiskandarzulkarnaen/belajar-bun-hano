@@ -1,7 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import type { PrismaClient } from "@prisma/client";
 import InvariantError from "../../exceptions/InvariantError";
 
-class UserService {
+class UserPrismaService {
   private prismaClient: PrismaClient;
   constructor(prismaClient: PrismaClient) {
     this.prismaClient = prismaClient;
@@ -28,5 +28,5 @@ class UserService {
   }
 };
 
-export default UserService;
+export default UserPrismaService;
 

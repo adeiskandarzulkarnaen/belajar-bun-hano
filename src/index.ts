@@ -1,29 +1,39 @@
-import { Context, Hono } from 'hono';
+// import lib
+import { Hono } from 'hono';
 
-import notFoundHandler from './middlewares/notFoundHandler';
-import errorHandler from './middlewares/errorHandler';
+// impor middleware
+import { cors } from 'hono/cors';
+import { secureHeaders } from 'hono/secure-headers';
+
+import onNotFoundHandler from './middlewares/onNotFoundHandler';
+import onErrorHandler from './middlewares/onErrorHandler';
 import bearerMiddleware from './middlewares/bearerMiddleware';
-import InvariantError from './exceptions/InvariantError';
 
-import userApp from './api/users/index';
 
+// import routes
+import userRoutes from './api/users/index';
+
+
+
+/********************************************************************* */
+/****************************[ main program ]************************* */
 const app = new Hono();
+import container from './container';
+
+// * GLOBAL MIDDLEWARE
+app.use(cors());
+app.use(secureHeaders());
 
 
-app.get('/bearer', bearerMiddleware(), (c: Context) => {
-  return c.json({
-    status:  "success",
-    message: "authorized access",
-  })
-});
-
-app.get('/error', async (c: Context) => {
-  throw new InvariantError("invarian error wae");
-})
+// * ROUTING
+app.route('/users', userRoutes(container));
 
 
-app.route('/users', userApp);
+// * GLOBAL ERROR HANDLING
+app.notFound(onNotFoundHandler);
+app.onError(onErrorHandler);
 
-app.notFound(notFoundHandler);
-app.onError(errorHandler);
-export default app
+export default {
+  port: process.env.APP_PORT || 3000,
+  fetch: app.fetch,
+};

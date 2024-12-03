@@ -1,26 +1,15 @@
-import { Context, Hono } from "hono";
+import { Hono } from "hono";
 import { Container } from "instances-container";
-
-// middleware
-
-import postAuthValidator from './validator/postAuthValidator';
+import AuthHandler from "./handler";
 
 
 
-const authRoutes = (container: Container): Hono {
+const authRoutes = (container: Container): Hono => {
   const app = new Hono();
+  const authHandler = new AuthHandler(container);
 
-
-  app.post('/auth', postAuthValidator, async (c: Context) => {
-
-    return c.json({
-      status: "success",
-      message: "berhasil login",
-      data: {
-        acessToken: "ini token"
-      }
-    }, 201);
-  });
+  // * routes
+  app.post('/auth', ...authHandler.postAuthHandlers);
 
 
   return app;

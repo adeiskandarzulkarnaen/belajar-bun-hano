@@ -1,0 +1,10 @@
+###
+// Add User
+POST http://localhost:3001/users
+Content-Type: application/json
+
+{
+  "username": "adeiskandarzulkarnaen",
+  "password": "secretpassword",
+  "fullname": "Ade Iskandar Zulkarnaen"
+}

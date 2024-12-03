@@ -8,11 +8,11 @@ const authLoginSchema = z.object({
 });
 
 
-const postAuthValidator = zValidator('json', authLoginSchema, (result, c) => {
+const eNewAuth = zValidator('json', authLoginSchema, (result, c) => {
   if (!result.success) {
     console.log(result.error.message)
     return c.text('Invalid!', 400)
   }
 });
 
-export default postAuthValidator;
+export default eNewAuth;

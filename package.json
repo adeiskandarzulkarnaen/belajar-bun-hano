@@ -2,17 +2,18 @@
   "name": "belajar-bun-hono",
   "type": "module",
   "scripts": {
+    "build": "bun build src/ --outdir dist",
     "start:dev": "bun run --hot src/index.ts",
-    "build": "bun build src/ --outdir dist"
+    "migrate:up": "bunx prisma migrate dev"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.4.1",
-    "@prisma/client": "^5.22.0",
+    "@prisma/client": "6.0.1",
     "hono": "^4.6.11",
     "instances-container": "^2.0.6"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "prisma": "^5.22.0"
+    "prisma": "^6.0.1"
   }
 }
